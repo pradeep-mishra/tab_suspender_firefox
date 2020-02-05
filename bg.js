@@ -3,6 +3,7 @@ let timeoutCount = 300000;
 let suspendApp = "false";
 
 async function loadScript() {
+
 	browser.storage.onChanged.addListener(function (i) {
 		if (i.timeoutCount) {
 			//console.log('timecount changed');
@@ -14,11 +15,18 @@ async function loadScript() {
 		}
 	});
 
-	browser.storage.local.get("timeoutCount").then(function (i) {
+	browser.storage.local.get("timeoutCount").then(async function (i) {
 		if (i && i.timeoutCount) {
 			//console.log('timecount changed');
 			timeoutCount = Number(i.timeoutCount);
 		}
+		var tabs = await browser.tabs.query({});
+		tabs.forEach(async (tab) => {
+			if (tab.active == true) {
+				return true;
+			}
+			setDiscardTimer(tab.id, tab.id);
+		})
 	});
 
 	browser.storage.local.get("suspendApp").then(function (i) {
@@ -27,6 +35,8 @@ async function loadScript() {
 			suspendApp = i.suspendApp == "true" ? "true" : "false";
 		}
 	});
+
+
 
 
 
@@ -51,49 +61,47 @@ async function loadScript() {
 	browser.tabs.onActivated.addListener(async function (tab) {
 		//tabs[i] = null;
 		//console.log('activated tab', tab.tabId);
+		setDiscardTimer(tab.tabId, tab.previousTabId);
+	});
+}
 
-		if (tabs[tab.tabId] && tabs[tab.tabId].timeout) {
-			try {
-				clearTimeout(tabs[tab.tabId].timeout);
-			} catch (e) {}
-			tabs[tab.tabId].timeout = null;
-		}
+async function setDiscardTimer(tabId, previousTabId) {
+	if (tabs[tabId] && tabs[tabId].timeout) {
+		try {
+			clearTimeout(tabs[tabId].timeout);
+		} catch (e) {}
+		tabs[tabId].timeout = null;
+	}
 
-		//console.log('suspendApp is', suspendApp)
+	//console.log('suspendApp is', suspendApp)
 
-		if (suspendApp == "true") {
+	if (suspendApp == "true") {
+		return true;
+	}
+
+	if (previousTabId) {
+
+		let isLive = await getTabValue(previousTabId, "live");
+		//console.log('isLive', isLive);
+
+		if (isLive == "1") {
+			//console.log('previous tab', previousTabId, 'is live can bee suspended');
 			return true;
 		}
 
-		if (tab.previousTabId) {
+		//console.log('tab', previousTabId, 'will be suspnded after', (timeoutCount / 1000), 'seconds');
 
-			let isLive = await getTabValue(tab.previousTabId, "live");
-			//console.log('isLive', isLive);
-
-			if (isLive == "1") {
-				//console.log('previous tab', tab.previousTabId, 'is live can bee suspended');
+		if (!tabs[previousTabId]) {
+			tabs[previousTabId] = {};
+		}
+		tabs[previousTabId].timeout = setTimeout(async function (tId) {
+			if (suspendApp == "true") {
 				return true;
 			}
-
-			//console.log('tab', tab.previousTabId, 'will be suspnded after', (timeoutCount / 1000), 'seconds');
-
-			if (!tabs[tab.previousTabId]) {
-				tabs[tab.previousTabId] = {};
-			}
-			tabs[tab.previousTabId].timeout = setTimeout(async function (tabId) {
-				if (suspendApp == "true") {
-					return true;
-				}
-				let currentTabId = await getCurrentTabId();
-				let isSuspendedOff = await getTabValue(currentTabId, "live");
-				//console.log('isSuspendedOff', isSuspendedOff);
-				//console.log('suspened tab', tabId);
-				browser.tabs.discard(tabId);
-			}, timeoutCount, tab.previousTabId);
-
-		}
-
-	});
+			//console.log('suspened tab', tabId);
+			browser.tabs.discard(tId);
+		}, timeoutCount, previousTabId);
+	}
 }
 
 async function getCurrentTabId() {
