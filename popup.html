@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <h2>Tab Suspender</h2>
+  <h2>New Tab Suspender <sup style="font-size:10px">1.4</sup style="font-size:10px"></h2>
   <ul>
     <li>
       <div class="panel">
@@ -28,15 +28,39 @@
       <div>
         <label class="stop-this">
           <span>Do not suspend this tab</span>
-          <input type="checkbox" id="current_tab"></input>
+          <input type="checkbox" id="current_tab" class="move-right"></input>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div>
+        <label class="whitelist-tabs">
+          <span>Add this URL to whitelist</span>
+          <input type="checkbox" id="whitelist_tab" class="move-right"></input>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div>
+        <label class="audible-tabs">
+          <span>Ignore audible tabs</span>
+          <input type="checkbox" id="audible_tabs" class="move-right"></input>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div>
+        <label class="pinned-tabs">
+          <span>Ignore pinned tabs</span>
+          <input type="checkbox" id="pinned_tabs" class="move-right"></input>
         </label>
       </div>
     </li>
     <li>
       <div>
         <label class="stop-all">
-          <span>Stop Tab Suspender</span>
-          <input type="checkbox" id="suspend_all"></input>
+          <span>Disable Tab Suspender</span>
+          <input type="checkbox" id="suspend_all" class="move-right"></input>
         </label>
       </div>
     </li>

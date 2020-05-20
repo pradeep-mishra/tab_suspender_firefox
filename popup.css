@@ -19,7 +19,10 @@ div>label {
 	cursor: pointer;
 }
 
-.stop-all>input,
-.stop-this>input {
+.move-right {
 	float: right;
+}
+
+.stop-all>span {
+	color: red;
 }

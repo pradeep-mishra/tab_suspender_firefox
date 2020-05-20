@@ -1,8 +1,25 @@
 let tabs = {};
 let timeoutCount = 300000;
 let suspendApp = "false";
+let audible = "false";
+let pinned = "false";
+let whitelisted = "";
 
 async function loadScript() {
+
+	//var themeInfo = await browser.theme.getCurrent();
+	//console.log('themeInfo', themeInfo)
+	//let activeTab = await getCurrentTabId();
+	//console.log('activeTab', activeTab)
+	let currentWindow = await browser.windows.getLastFocused();
+/*
+	browser.theme.update({
+		colors: {
+			frame: '#fff',
+			backgroundtext: '#000',
+		}
+	});
+*/
 
 	browser.storage.onChanged.addListener(function (i) {
 		if (i.timeoutCount) {
@@ -12,6 +29,20 @@ async function loadScript() {
 			//console.log('i.suspendApp', i.suspendApp)
 			suspendApp = i.suspendApp.newValue == "true" ? "true" : "false";
 			//console.log('suspendApp', suspendApp);
+		} else if (i.audible) {
+			audible = i.audible.newValue == "true" ? "true" : "false";
+		} else if (i.pinned) {
+			pinned = i.pinned.newValue == "true" ? "true" : "false";
+		}
+		else if (i.whitelisted) {
+			whitelisted = i.whitelisted.newValue ;
+			//console.log('whitelisted list updated')
+		}
+	});
+
+	browser.storage.local.get("whitelisted").then(function (i) {
+		if (i && i.whitelisted) {
+			whitelisted = i.whitelisted ;
 		}
 	});
 
@@ -22,9 +53,19 @@ async function loadScript() {
 		}
 		var tabs = await browser.tabs.query({});
 		tabs.forEach(async (tab) => {
+			//console.log('tab.id', tab.id)
+			if (!tabs[tab.id]) {
+				tabs[tab.id] = {};
+			}
+			tabs[tab.id].tab = {
+				id: tab.id,
+				pinned: tab.pinned,
+				audible: tab.audible
+			};
 			if (tab.active == true) {
 				return true;
 			}
+			//console.log('tabs[tab.id].tab', tabs[tab.id].tab)
 			setDiscardTimer(tab.id, tab.id);
 		})
 	});
@@ -35,6 +76,21 @@ async function loadScript() {
 			suspendApp = i.suspendApp == "true" ? "true" : "false";
 		}
 	});
+
+	browser.storage.local.get("audible").then(function (i) {
+		if (i && i.audible) {
+			//console.log('timecount changed');
+			audible = i.audible == "true" ? "true" : "false";
+		}
+	});
+
+	browser.storage.local.get("pinned").then(function (i) {
+		if (i && i.pinned) {
+			pinned = i.pinned == "true" ? "true" : "false";
+		}
+	});
+
+	
 
 
 
@@ -73,8 +129,6 @@ async function setDiscardTimer(tabId, previousTabId) {
 		tabs[tabId].timeout = null;
 	}
 
-	//console.log('suspendApp is', suspendApp)
-
 	if (suspendApp == "true") {
 		return true;
 	}
@@ -82,10 +136,28 @@ async function setDiscardTimer(tabId, previousTabId) {
 	if (previousTabId) {
 
 		let isLive = await getTabValue(previousTabId, "live");
-		//console.log('isLive', isLive);
-
 		if (isLive == "1") {
-			//console.log('previous tab', previousTabId, 'is live can bee suspended');
+			return true;
+		}
+
+		let tabInfo = await browser.tabs.get(previousTabId);
+		//console.log('previousTabId', previousTabId)
+		//console.log('tabInfo', tabInfo)
+		//console.log('pinned', pinned, tabInfo.pinned);
+		//console.log('audible', audible, tabInfo.audible);
+
+		if (audible == "true" && tabInfo && tabInfo.audible) {
+			//console.log('tab is audible so cannot be discarded');
+			return true;
+		}
+		if (pinned == "true" && tabInfo && tabInfo.pinned) {
+			//console.log('tab is pinned so cannot be discarded');
+			return true;
+		}
+
+		let thisHost = (new URL(document.URL)).host;
+		if (whitelisted && whitelisted.includes(thisHost)) {
+			//console.log('tab is whitelisted so cannot be discarded');
 			return true;
 		}
 
