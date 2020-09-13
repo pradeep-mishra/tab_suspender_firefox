@@ -12,14 +12,14 @@ async function loadScript() {
 	//let activeTab = await getCurrentTabId();
 	//console.log('activeTab', activeTab)
 	let currentWindow = await browser.windows.getLastFocused();
-/*
-	browser.theme.update({
-		colors: {
-			frame: '#fff',
-			backgroundtext: '#000',
-		}
-	});
-*/
+	/*
+		browser.theme.update({
+			colors: {
+				frame: '#fff',
+				backgroundtext: '#000',
+			}
+		});
+	*/
 
 	browser.storage.onChanged.addListener(function (i) {
 		if (i.timeoutCount) {
@@ -35,14 +35,14 @@ async function loadScript() {
 			pinned = i.pinned.newValue == "true" ? "true" : "false";
 		}
 		else if (i.whitelisted) {
-			whitelisted = i.whitelisted.newValue ;
+			whitelisted = i.whitelisted.newValue;
 			//console.log('whitelisted list updated')
 		}
 	});
 
 	browser.storage.local.get("whitelisted").then(function (i) {
 		if (i && i.whitelisted) {
-			whitelisted = i.whitelisted ;
+			whitelisted = i.whitelisted;
 		}
 	});
 
@@ -90,7 +90,7 @@ async function loadScript() {
 		}
 	});
 
-	
+
 
 
 
@@ -108,7 +108,7 @@ async function loadScript() {
 		if (tabs[tabId] && tabs[tabId].timeout) {
 			try {
 				clearTimeout(tabs[tabId].timeout);
-			} catch (e) {}
+			} catch (e) { }
 		}
 		tabs[tabId] = {};
 		//console.log('removed tabId', tabId);
@@ -125,7 +125,7 @@ async function setDiscardTimer(tabId, previousTabId) {
 	if (tabs[tabId] && tabs[tabId].timeout) {
 		try {
 			clearTimeout(tabs[tabId].timeout);
-		} catch (e) {}
+		} catch (e) { }
 		tabs[tabId].timeout = null;
 	}
 
@@ -155,13 +155,14 @@ async function setDiscardTimer(tabId, previousTabId) {
 			return true;
 		}
 
-		let thisHost = (new URL(document.URL)).host;
-		if (whitelisted && whitelisted.includes(thisHost)) {
+		let url = tabInfo.url;
+		//console.log('url', url);
+		let host = String((new URL(url)).host);
+		//console.log('thisHost', host,whitelisted);
+		if (whitelisted && whitelisted.includes(host)) {
 			//console.log('tab is whitelisted so cannot be discarded');
 			return true;
 		}
-
-		//console.log('tab', previousTabId, 'will be suspnded after', (timeoutCount / 1000), 'seconds');
 
 		if (!tabs[previousTabId]) {
 			tabs[previousTabId] = {};
@@ -170,9 +171,12 @@ async function setDiscardTimer(tabId, previousTabId) {
 			if (suspendApp == "true") {
 				return true;
 			}
-			//console.log('suspened tab', tabId);
+			//console.log('suspened tab', host);
 			browser.tabs.discard(tId);
 		}, timeoutCount, previousTabId);
+
+		//console.log('tab', previousTabId, 'will be suspnded after', (timeoutCount / 1000), 'seconds');
+
 	}
 }
 
