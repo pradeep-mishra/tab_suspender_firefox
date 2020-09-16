@@ -2,7 +2,7 @@
   "description": "A very lightweight tab suspender to suspend inactive tabs that reduces an overall memory usage of firefox, uses a firefox native discard api",
   "manifest_version": 2,
   "name": "New Tab Suspender",
-  "version": "1.6",
+  "version": "1.7",
   "homepage_url": "https://github.com/pradeep-mishra/tab_suspender_firefox",
   "author": "Pradeep Mishra",
   "icons": {
@@ -16,8 +16,7 @@
   "permissions": [
     "tabs",
     "storage",
-    "sessions",
-    "*://*/*"
+    "sessions"
   ],
   "browser_specific_settings": {
     "gecko": {
