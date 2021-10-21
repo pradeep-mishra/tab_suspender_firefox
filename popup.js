@@ -197,6 +197,4 @@ async function getTabValue(tabId, key) {
 	return await browser.sessions.getTabValue(tabId, key);
 }
 
-
-
 loadScript();
