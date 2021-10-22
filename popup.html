@@ -13,17 +13,12 @@
     <li>
       <div class="panel">
         <span>Suspend after:</span>
-        <select id="timeout_select">
-          <option value="5000">5 Seconds</option>
-          <option value="10000">10 Seconds</option>
-          <option value="30000">30 Seconds</option>
-          <option value="60000">1 Minutes</option>
-          <option value="300000" selected="selected">5 Minutes</option>
-          <option value="600000">10 Minutes</option>
-          <option value="900000">15 Minutes</option>
-          <option value="1200000">20 Minutes</option>
-          <option value="1800000">30 Minutes</option>
-          <option value="3600000">1 Hour</option>
+        <input id="timeout_value" type="number" min="1" max="999" size="3" value="5">
+        <select id="timeout_unit">
+          <option value="1000">Seconds</option>
+          <option value="60000" selected="selected">Minutes</option>
+          <option value="3600000">Hours</option>
+          <option value="86400000">Days</option>
         </select>
       </div>
     </li>

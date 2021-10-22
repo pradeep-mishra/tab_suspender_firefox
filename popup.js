@@ -1,10 +1,26 @@
 async function loadScript() {
-	let elmTimeoutSelect = document.getElementById("timeout_select");
+	let elmTimeoutValue = document.getElementById("timeout_value");
+	let elmTimeoutUnit = document.getElementById("timeout_unit");
 	let elmSuspendAll = document.getElementById("suspend_all");
 	let elmCurrentTab = document.getElementById("current_tab");
 	let elmAudibleTab = document.getElementById("audible_tabs");
 	let elmPinnedTab = document.getElementById("pinned_tabs");
 	let elmWhitelistTab = document.getElementById("whitelist_tab");
+
+	function detectUnit(value) {
+		// const units = [1000, 60000, 3600000, 86400000]
+		const units = Array.prototype.map.call(elmTimeoutUnit.children, optionElm => parseInt(optionElm.value, 10))
+		units.sort((a,b) => a-b)
+		let result = 1000
+		for (const unit of units) {
+			if (value % unit === 0) {
+				result = unit
+			} else {
+				return result
+			}
+		}
+		return  result
+	}
 
 	let tabArray = await browser.tabs.query({
 		currentWindow: true,
@@ -29,7 +45,7 @@ async function loadScript() {
 							//console.log('not adding coz already there');
 							return true;
 						}
-						whitelisted = whitelisted +  host + ';';						
+						whitelisted = whitelisted +  host + ';';
 						//console.log('full ist is', whitelisted);
 						browser.storage.local.set({
 							whitelisted: whitelisted
@@ -40,7 +56,7 @@ async function loadScript() {
 					});
 				}
 			});
-			
+
 		}else{
 			browser.storage.local.get("whitelisted").then(function (i) {
 				if (i) {
@@ -60,7 +76,7 @@ async function loadScript() {
 				}
 			});
 		}
-		
+
 	});
 
 	elmPinnedTab.addEventListener('change', function (e) {
@@ -87,13 +103,16 @@ async function loadScript() {
 		});
 	});
 
-	elmTimeoutSelect.addEventListener('change', function (e) {
-		var elm = e.target;
-		//console.log('changed to', elm.value);
+	function updateTimeoutCount(e) {
+		const unit = parseInt(elmTimeoutUnit.value, 10) || 60000
+		const value = parseInt(elmTimeoutValue.value, 10) || 5
 		browser.storage.local.set({
-			timeoutCount: elm.value
+			timeoutCount: value * unit
 		});
-	});
+	}
+
+	elmTimeoutUnit.addEventListener('change', updateTimeoutCount);
+	elmTimeoutValue.addEventListener('change', updateTimeoutCount);
 
 	elmCurrentTab.addEventListener('change', async function (e) {
 		var elm = e.target;
@@ -138,10 +157,15 @@ async function loadScript() {
 	});
 
 	browser.storage.local.get("timeoutCount").then(function (i) {
-		//console.log('ii', i)
-		if (i && i.timeoutCount) {
-			elmTimeoutSelect.value = i.timeoutCount;
+		if (!i || !i.timeoutCount) {
+			return;
 		}
+		const timeoutCount = i.timeoutCount
+		const unit = detectUnit(timeoutCount)
+		const value = timeoutCount/unit
+
+		elmTimeoutUnit.value = unit
+		elmTimeoutValue.value = value
 	});
 
 	browser.storage.local.get("suspendApp").then(function (i) {
