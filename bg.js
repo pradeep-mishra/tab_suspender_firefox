@@ -36,13 +36,14 @@ async function loadScript() {
 		}
 		else if (i.whitelisted) {
 			whitelisted = i.whitelisted.newValue;
-			//console.log('whitelisted list updated')
+			//console.log('whitelisted list updated', whitelisted)
 		}
 	});
 
 	browser.storage.local.get("whitelisted").then(function (i) {
 		if (i && i.whitelisted) {
 			whitelisted = i.whitelisted;
+			//console.log('whiteliested', whitelisted)
 		}
 	});
 
@@ -174,9 +175,6 @@ async function setDiscardTimer(tabId, previousTabId) {
 			//console.log('suspened tab', host);
 			browser.tabs.discard(tId);
 		}, timeoutCount, previousTabId);
-
-		//console.log('tab', previousTabId, 'will be suspnded after', (timeoutCount / 1000), 'seconds');
-
 	}
 }
 

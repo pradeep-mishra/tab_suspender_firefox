@@ -4,11 +4,11 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-body>ul {
+ul.main-list {
 	padding-left: 0px;
 }
 
-body>ul li {
+ul.main-list>li {
 	border-bottom: 1px solid rgb(211, 211, 211);
 	list-style: none;
 	padding-bottom: 8px;
@@ -25,4 +25,55 @@ div>label {
 
 .stop-all>span {
 	color: red;
+}
+
+.space-span{
+	margin: 0px 30%;
+}
+.whitelist-div ul{
+	position:relative;
+	padding:0;
+	margin:0;
+}
+.whitelist-div ul li{
+	list-style: none;
+	padding-bottom: 8px;
+	padding-top: 5px;
+	cursor: default;
+}
+
+.whitelist-arrow{
+	fill: black;
+	width: 16px;
+	cursor: pointer;
+}
+
+.arrow-down{
+	transform: rotate(90deg);
+}
+
+
+.arrow-up{
+	transform: rotate(270deg);
+}
+
+.whitelist-div{
+	margin-top: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 100%;
+}
+.whitelist-item-title{
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+	width: 80%;
+}
+.whitelist-del-icon{
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+}
+.hidden{
+	display: none;
 }

@@ -7,13 +7,16 @@
   <link rel="stylesheet" href="popup.css" />
 </head>
 
-<body>
-  <h2>New Tab Suspender <sup style="font-size:10px">1.7</sup style="font-size:10px"></h2>
-  <ul>
+<body style="width:320px">
+  <div>
+    <span style="font-size:16px;font-weight: bold;" id="app_title">New Tab Suspender </span>
+    <sup style="font-size:10px">1.9</sup style="font-size:10px">
+  </div>
+  <ul class="main-list">
     <li>
       <div class="panel">
-        <span>Suspend after:</span>
-        <select id="timeout_select">
+        <span id="suspend_after">Suspend after:</span>
+        <select style="float:right" id="timeout_select">
           <option value="5000">5 Seconds</option>
           <option value="10000">10 Seconds</option>
           <option value="30000">30 Seconds</option>
@@ -30,7 +33,7 @@
     <li>
       <div>
         <label class="stop-this">
-          <span>Do not suspend this tab</span>
+          <span id="do_not_suspend_this">Do not suspend this tab</span>
           <input type="checkbox" id="current_tab" class="move-right"></input>
         </label>
       </div>
@@ -38,7 +41,7 @@
     <li>
       <div>
         <label class="whitelist-tabs">
-          <span>Add this URL to whitelist</span>
+          <span id="add_to_whitelist">Add this URL Host to whitelist</span>
           <input type="checkbox" id="whitelist_tab" class="move-right"></input>
         </label>
       </div>
@@ -46,7 +49,7 @@
     <li>
       <div>
         <label class="audible-tabs">
-          <span>Ignore audible tabs</span>
+          <span id="ignore_audible">Ignore audible tabs</span>
           <input type="checkbox" id="audible_tabs" class="move-right"></input>
         </label>
       </div>
@@ -54,7 +57,7 @@
     <li>
       <div>
         <label class="pinned-tabs">
-          <span>Ignore pinned tabs</span>
+          <span id="ignore_pinned">Ignore pinned tabs</span>
           <input type="checkbox" id="pinned_tabs" class="move-right"></input>
         </label>
       </div>
@@ -62,9 +65,23 @@
     <li>
       <div>
         <label class="stop-all">
-          <span>Disable Tab Suspender</span>
+          <span id="disable_app">Disable Tab Suspender</span>
           <input type="checkbox" id="suspend_all" class="move-right"></input>
         </label>
+      </div>
+    </li>
+    <li>
+      <div style="width: 100%;">
+        <div style="justify-content: space-between;display: flex;">
+          <div>
+            Whitelist
+          </div>
+          <div>
+            <img id="whitelist_arrow" class="whitelist-arrow arrow-down" src="/public/arrow.svg"></img>
+          </div>
+        </div>
+        
+        <div id="whitelist_div" class="whitelist-div hidden"></div>
       </div>
     </li>
   </ul>
