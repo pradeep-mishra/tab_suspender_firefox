@@ -1,30 +1,30 @@
 {
-    "appTitle": {
-        "message": "New Tab Suspender",
-        "description": "new tab suspender"
-    },
-    "suspendAfter": {
-        "message": "Suspender después",
-        "description": "suspend after minutes"
-    },
-    "doNotSuspendThisTab": {
-        "message": "No suspenda esta pestaña",
-        "description": "Do not suspend this tab"
-    },
-    "addThisToWhitelist": {
-        "message": "Agregar este sitio web a la lista blanca",
-        "description": "Add this WebSite to whitelist"
-    },
-    "ignoreAudible": {
-        "message": "Ignorar pestañas audibles",
-        "description": "Ignore audible Tab"
-    },
-    "ignorePinned": {
-        "message": "Ignorar pestañas fijadas",
-        "description": "Ignore pinned tabs"
-    },
-    "disableTabSuspender": {
-        "message": "Inhabilitar New Tab Suspender",
-        "description": "Disable New Tab Suspender"
-    }
+  "appTitle": {
+    "message": "New Tab Suspender",
+    "description": "new tab suspender"
+  },
+  "suspendAfter": {
+    "message": "Suspender después",
+    "description": "suspend after minutes"
+  },
+  "doNotSuspendThisTab": {
+    "message": "No suspenda esta pestaña",
+    "description": "Do not suspend this tab"
+  },
+  "addThisToWhitelist": {
+    "message": "Agregar este sitio web a la lista blanca",
+    "description": "Add this WebSite to whitelist"
+  },
+  "ignoreAudible": {
+    "message": "Ignorar pestañas audibles",
+    "description": "Ignore audible Tab"
+  },
+  "ignorePinned": {
+    "message": "Ignorar pestañas fijadas",
+    "description": "Ignore pinned tabs"
+  },
+  "disableTabSuspender": {
+    "message": "Inhabilitar New Tab Suspender",
+    "description": "Disable New Tab Suspender"
+  }
 }

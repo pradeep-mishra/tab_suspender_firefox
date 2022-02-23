@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="popup.css" />
-</head>
-
-<body style="width:320px">
-  <div>
-    <span style="font-size:16px;font-weight: bold;" id="app_title">New Tab Suspender </span>
-    <sup style="font-size:10px">1.9</sup style="font-size:10px">
-  </div>
-  <ul class="main-list">
-    <li>
-      <div class="panel">
-        <span id="suspend_after">Suspend after:</span>
-        <select style="float:right" id="timeout_select">
-          <option value="5000">5 Seconds</option>
-          <option value="10000">10 Seconds</option>
-          <option value="30000">30 Seconds</option>
-          <option value="60000">1 Minutes</option>
-          <option value="120000">2 Minutes</option>
-          <option value="180000">3 Minutes</option>
-          <option value="300000" selected="selected">5 Minutes</option>
-          <option value="600000">10 Minutes</option>
-          <option value="900000">15 Minutes</option>
-          <option value="1200000">20 Minutes</option>
-          <option value="1800000">30 Minutes</option>
-          <option value="3600000">1 Hour</option>
-          <option value="7200000">2 Hours</option>
-          <option value="18000000">5 Hours</option>
-        </select>
-      </div>
-    </li>
-    <li>
-      <div>
-        <label class="stop-this">
-          <span id="do_not_suspend_this">Do not suspend this tab</span>
-          <input type="checkbox" id="current_tab" class="move-right"></input>
-        </label>
-      </div>
-    </li>
-    <li>
-      <div>
-        <label class="whitelist-tabs">
-          <span id="add_to_whitelist">Add this URL Host to whitelist</span>
-          <input type="checkbox" id="whitelist_tab" class="move-right"></input>
-        </label>
-      </div>
-    </li>
-    <li>
-      <div>
-        <label class="audible-tabs">
-          <span id="ignore_audible">Ignore audible tabs</span>
-          <input type="checkbox" id="audible_tabs" class="move-right"></input>
-        </label>
-      </div>
-    </li>
-    <li>
-      <div>
-        <label class="pinned-tabs">
-          <span id="ignore_pinned">Ignore pinned tabs</span>
-          <input type="checkbox" id="pinned_tabs" class="move-right"></input>
-        </label>
-      </div>
-    </li>
-    <li>
-      <div>
-        <label class="stop-all">
-          <span id="disable_app">Disable Tab Suspender</span>
-          <input type="checkbox" id="suspend_all" class="move-right"></input>
-        </label>
-      </div>
-    </li>
-    <li>
-      <div style="width: 100%;">
-        <div style="justify-content: space-between;display: flex;">
-          <div>
-            Whitelist
-          </div>
-          <div>
-            <img id="whitelist_arrow" class="whitelist-arrow arrow-down" src="/public/arrow.svg"></img>
-          </div>
+  <body style="width: 320px">
+    <div>
+      <span style="font-size: 16px; font-weight: bold" id="app_title"
+        >New Tab Suspender
+      </span>
+      <sup style="font-size: 10px">1.9</sup>
+    </div>
+    <ul class="main-list">
+      <li>
+        <div class="panel">
+          <span id="suspend_after">Suspend after:</span>
+          <select style="float: right" id="timeout_select">
+            <option value="5000">5 Seconds</option>
+            <option value="10000">10 Seconds</option>
+            <option value="30000">30 Seconds</option>
+            <option value="60000">1 Minutes</option>
+            <option value="120000">2 Minutes</option>
+            <option value="180000">3 Minutes</option>
+            <option value="300000" selected="selected">5 Minutes</option>
+            <option value="600000">10 Minutes</option>
+            <option value="900000">15 Minutes</option>
+            <option value="1200000">20 Minutes</option>
+            <option value="1800000">30 Minutes</option>
+            <option value="3600000">1 Hour</option>
+            <option value="7200000">2 Hours</option>
+            <option value="18000000">5 Hours</option>
+          </select>
         </div>
-        
-        <div id="whitelist_div" class="whitelist-div hidden"></div>
-      </div>
-    </li>
-  </ul>
-  <script src="popup.js"></script>
-</body>
+      </li>
+      <li>
+        <div>
+          <label class="stop-this">
+            <span id="do_not_suspend_this">Do not suspend this tab</span>
+            <input type="checkbox" id="current_tab" class="move-right" />
+          </label>
+        </div>
+      </li>
+      <li>
+        <div>
+          <label class="whitelist-tabs">
+            <span id="add_to_whitelist">Add this URL Host to whitelist</span>
+            <input type="checkbox" id="whitelist_tab" class="move-right" />
+          </label>
+        </div>
+      </li>
+      <li>
+        <div>
+          <label class="audible-tabs">
+            <span id="ignore_audible">Ignore audible tabs</span>
+            <input type="checkbox" id="audible_tabs" class="move-right" />
+          </label>
+        </div>
+      </li>
+      <li>
+        <div>
+          <label class="pinned-tabs">
+            <span id="ignore_pinned">Ignore pinned tabs</span>
+            <input type="checkbox" id="pinned_tabs" class="move-right" />
+          </label>
+        </div>
+      </li>
+      <li>
+        <div>
+          <label class="stop-all">
+            <span id="disable_app">Disable Tab Suspender</span>
+            <input type="checkbox" id="suspend_all" class="move-right" />
+          </label>
+        </div>
+      </li>
+      <li>
+        <div style="width: 100%">
+          <div style="justify-content: space-between; display: flex">
+            <div>Whitelist</div>
+            <div>
+              <img
+                id="whitelist_arrow"
+                class="whitelist-arrow arrow-down"
+                src="/public/arrow.svg"
+              />
+            </div>
+          </div>
 
+          <div id="whitelist_div" class="whitelist-div hidden"></div>
+        </div>
+      </li>
+    </ul>
+    <script src="popup.js"></script>
+  </body>
 </html>

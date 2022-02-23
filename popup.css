@@ -1,79 +1,79 @@
 body {
-	padding: 10px 20px;
-	font-family: "Ubuntu", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-	-moz-osx-font-smoothing: grayscale;
+  padding: 10px 20px;
+  font-family: 'Ubuntu', -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ul.main-list {
-	padding-left: 0px;
+  padding-left: 0px;
 }
 
-ul.main-list>li {
-	border-bottom: 1px solid rgb(211, 211, 211);
-	list-style: none;
-	padding-bottom: 8px;
-	padding-top: 5px;
+ul.main-list > li {
+  border-bottom: 1px solid rgb(211, 211, 211);
+  list-style: none;
+  padding-bottom: 8px;
+  padding-top: 5px;
 }
 
-div>label {
-	cursor: pointer;
+div > label {
+  cursor: pointer;
 }
 
 .move-right {
-	float: right;
+  float: right;
 }
 
-.stop-all>span {
-	color: red;
+.stop-all > span {
+  color: red;
 }
 
-.space-span{
-	margin: 0px 30%;
+.space-span {
+  margin: 0px 30%;
 }
-.whitelist-div ul{
-	position:relative;
-	padding:0;
-	margin:0;
+.whitelist-div ul {
+  position: relative;
+  padding: 0;
+  margin: 0;
 }
-.whitelist-div ul li{
-	list-style: none;
-	padding-bottom: 8px;
-	padding-top: 5px;
-	cursor: default;
-}
-
-.whitelist-arrow{
-	fill: black;
-	width: 16px;
-	cursor: pointer;
+.whitelist-div ul li {
+  list-style: none;
+  padding-bottom: 8px;
+  padding-top: 5px;
+  cursor: default;
 }
 
-.arrow-down{
-	transform: rotate(90deg);
+.whitelist-arrow {
+  fill: black;
+  width: 16px;
+  cursor: pointer;
 }
 
-
-.arrow-up{
-	transform: rotate(270deg);
+.arrow-down {
+  transform: rotate(90deg);
 }
 
-.whitelist-div{
-	margin-top: 10px;
-	white-space: nowrap;
-	overflow: hidden;
-	width: 100%;
+.arrow-up {
+  transform: rotate(270deg);
 }
-.whitelist-item-title{
-	white-space: nowrap;
+
+.whitelist-div {
+  margin-top: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+.whitelist-item-title {
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-	width: 80%;
+  width: 80%;
 }
-.whitelist-del-icon{
-	cursor: pointer;
-	margin: 0;
-	padding: 0;
+.whitelist-del-icon {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
-.hidden{
-	display: none;
+.hidden {
+  display: none;
 }

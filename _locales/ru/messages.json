@@ -1,30 +1,30 @@
 {
-    "appTitle": {
-        "message": "New Tab Suspender",
-        "description": "new tab suspender"
-    },
-    "suspendAfter": {
-        "message": "Приостановить после",
-        "description": "suspend after minutes"
-    },
-    "doNotSuspendThisTab": {
-        "message": "Не приостановить эту вкладку",
-        "description": "Do not suspend this tab"
-    },
-    "addThisToWhitelist": {
-        "message": "Добавить этот веб-сайт в белый список",
-        "description": "Add this WebSite to whitelist"
-    },
-    "ignoreAudible": {
-        "message": "Игнорировать звуковые вкладки",
-        "description": "Ignore audible Tab"
-    },
-    "ignorePinned": {
-        "message": "Игнорировать закрепленные вкладки",
-        "description": "Ignore pinned tabs"
-    },
-    "disableTabSuspender": {
-        "message": "Отключить New Tab Suspender",
-        "description": "Disable New Tab Suspender"
-    }
+  "appTitle": {
+    "message": "New Tab Suspender",
+    "description": "new tab suspender"
+  },
+  "suspendAfter": {
+    "message": "Приостановить после",
+    "description": "suspend after minutes"
+  },
+  "doNotSuspendThisTab": {
+    "message": "Не приостановить эту вкладку",
+    "description": "Do not suspend this tab"
+  },
+  "addThisToWhitelist": {
+    "message": "Добавить этот веб-сайт в белый список",
+    "description": "Add this WebSite to whitelist"
+  },
+  "ignoreAudible": {
+    "message": "Игнорировать звуковые вкладки",
+    "description": "Ignore audible Tab"
+  },
+  "ignorePinned": {
+    "message": "Игнорировать закрепленные вкладки",
+    "description": "Ignore pinned tabs"
+  },
+  "disableTabSuspender": {
+    "message": "Отключить New Tab Suspender",
+    "description": "Disable New Tab Suspender"
+  }
 }

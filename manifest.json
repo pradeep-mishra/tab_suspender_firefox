@@ -9,15 +9,9 @@
     "48": "icons/border-48.png"
   },
   "background": {
-    "scripts": [
-      "bg.js"
-    ]
+    "scripts": ["bg.js"]
   },
-  "permissions": [
-    "tabs",
-    "storage",
-    "sessions"
-  ],
+  "permissions": ["tabs", "storage", "sessions"],
   "browser_specific_settings": {
     "gecko": {
       "strict_min_version": "58.0",
