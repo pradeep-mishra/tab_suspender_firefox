@@ -1,0 +1,30 @@
+{
+  "appTitle": {
+    "message": "न्यू टैब ससपेनडर",
+    "description": "new tab suspender"
+  },
+  "suspendAfter": {
+    "message": "के बाद निलंबित",
+    "description": "suspend after minutes"
+  },
+  "doNotSuspendThisTab": {
+    "message": "इस टैब को निलंबित न करें",
+    "description": "Do not suspend this tab"
+  },
+  "addThisToWhitelist": {
+    "message": "इस वेबसाइट को श्वेतसूची में जोड़ें",
+    "description": "Add this WebSite to whitelist"
+  },
+  "ignoreAudible": {
+    "message": "श्रव्य टैब को अनदेखा करें",
+    "description": "Ignore audible Tab"
+  },
+  "ignorePinned": {
+    "message": "पिन किए गए टैब को अनदेखा करें",
+    "description": "Ignore pinned tabs"
+  },
+  "disableTabSuspender": {
+    "message": "न्यू टैब ससपेनडर अक्षम करें",
+    "description": "Disable New Tab Suspender"
+  }
+}

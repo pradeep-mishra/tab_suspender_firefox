@@ -1,0 +1,21 @@
+{
+  "description": "A very lightweight tab suspender to suspend inactive tabs that reduces an overall memory usage of chrome",
+  "manifest_version": 3,
+  "name": "New Tab Suspender",
+  "version": "1.9",
+  "homepage_url": "https://github.com/pradeep-mishra/tab_suspender_firefox",
+  "author": "Pradeep Mishra",
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+  "background": {
+    "service_worker": "bg.js"
+  },
+  "permissions": ["tabs", "storage", "sessions"],
+  "action": {
+    "default_title": "New Tab Suspender",
+    "default_popup": "popup.html"
+  },
+  "default_locale": "en",
+  "minimum_chrome_version": "88"
+}

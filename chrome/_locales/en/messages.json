@@ -1,0 +1,30 @@
+{
+  "appTitle": {
+    "message": "New Tab Suspender",
+    "description": "new tab suspender"
+  },
+  "suspendAfter": {
+    "message": "Suspend After",
+    "description": "suspend after minutes"
+  },
+  "doNotSuspendThisTab": {
+    "message": "Do not suspend this tab",
+    "description": "Do not suspend this tab"
+  },
+  "addThisToWhitelist": {
+    "message": "Add this URL Host to whitelist",
+    "description": "Add this URL Host to whitelist"
+  },
+  "ignoreAudible": {
+    "message": "Ignore audible tabs",
+    "description": "Ignore audible Tab"
+  },
+  "ignorePinned": {
+    "message": "Ignore pinned tabs",
+    "description": "Ignore pinned tabs"
+  },
+  "disableTabSuspender": {
+    "message": "Disable New Tab Suspender",
+    "description": "Disable New Tab Suspender"
+  }
+}
